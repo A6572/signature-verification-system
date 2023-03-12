@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Signature Verification System</title>
+	<style>
+		body {
+			background-image:url('Background 1.0.jpg');
+			font-family: Calibri, sans-serif;
+			font-size: 18px;
+			font-weight: bold;
+			padding: 20px;
+		}
+		h1 {
+			text-align: center;
+			color: #f8f2f2;
+			margin-top: 0;
+		}
+		label {
+			display: block;
+			margin-bottom: 10px;
+			text-align: center;
+			color: #0c0317;
+		}
+		input[type="file"] {
+			display: block;
+			margin-bottom: 10px;
+			margin-right: auto;
+			margin-left: auto;
+						
+		}
+		button {
+			background-color: rgb(29, 72, 230);
+			color: rgb(245, 242, 242);
+			font-size: 10px;
+			padding: 10px;
+			border: none;
+			border-radius: 50px;
+			cursor: pointer;
+		}
+		img {
+			display: block;
+			max-width:50%;
+			margin-bottom: 10px;
+		}
+		input[type="text"] {
+			width: auto;
+			padding-top:20px;
+			border-radius: 5px;
+			padding-bottom:20px;
+			background-color: #f5eeee;
+			color:rgb(26, 24, 24);
+			border:1px solid rgb(222, 39, 39);
+		}
+        #Progress_Status { 
+ 			 width: 100%; 
+ 			 background-color:none; 
+} 
+		#myprogressBar { 
+ 			 width: 0%; 
+ 			 height: 5px; 
+  			background-color: #e81a1a; 
+} 
+	</style>
+</head>
+<body>
+	<h1>Signature Verification System</h1>
+	<div id="Progress_Status"> 
+		<div id="myprogressBar"></div>
+	  </div><br> 
+	<form>
+		<label for="signature">Upload Your Signature Image here to verify</label>
+<table>
+	<tr>
+		<td><input type="file" id="signature" name="signature"> </td>
+		<td><button type="button" onclick="uploadFile()">Verify Signature</button></td>
+	</tr>
+</table>
+<table width="100%" border="2pt">
+	<tr>
+		<td><img id="image"></td>
+		<td><input type="text" id="result" name="result" placeholder="Verification Results"></td>
+	</tr>
+</table>	
+	</form>
+    <br>
+    <div class = "label">
+        <div class="label">
+        <div id="myBar" class="input" style="height:24px;width:0"></div>
+        </div><br>
+	<script>
+		function uploadFile() {
+			var fileInput = document.getElementById('signature');
+			var image = document.getElementById('image');
+			var result = document.getElementById('result');
+			if (fileInput.files && fileInput.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+				image.src = e.target.result;
+				};
+				reader.readAsDataURL(fileInput.files[0]);
+result.value = "GENUINE SIGNATURE";
+			}		
+			var element = document.getElementById("myprogressBar");    
+			var width = 1; 
+			var identity = setInterval(scene, 10); 
+			function scene() { 
+		  		if (width >= 100) { 
+			clearInterval(identity); 
+		  } else { 
+			width++;  
+			element.style.width = width + '%'; 
+		  } 
+		} 
+		if(fileInput.files && fileInput.files[0]){
+		}else{
+			alert('PLEASE UPLOAD A SIGNATURE TO VERIFY ');
+			result.value = "Please Upload Signature ";
+		}
+		}
+	</script>
+</body>
+</html>
